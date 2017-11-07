@@ -12,12 +12,13 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize((int)(dimension.width/1.3), (int)(dimension.height/1.3));
         JDesktopPane desktopPane = new JDesktopPane();
+        JMenuBar upMenu = new UpMenu(desktopPane);
 
 
         add(desktopPane);
 
 
-        setJMenuBar(new UpMenu());
+        setJMenuBar(upMenu);
 
         setVisible(true);
     }

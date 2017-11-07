@@ -1,12 +1,17 @@
 package mainWindow;
 
 
+import emploees.MainEmployees;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class UpMenu extends JMenuBar {
 
-    public UpMenu(){
+    JDesktopPane desktopPane;
+
+    public UpMenu(JDesktopPane desktopPane){
+        this.desktopPane = desktopPane;
         add(createFileMenu());
         add(createTablesMenu());
     }
@@ -30,6 +35,8 @@ public class UpMenu extends JMenuBar {
         tablesMenu.add(emploees);
         tablesMenu.addSeparator();
 
+        emploees.addActionListener(new OpenEmploee());
+
         return tablesMenu;
     }
 
@@ -41,6 +48,14 @@ public class UpMenu extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
+        }
+    }
+
+    class OpenEmploee extends AbstractAction{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            desktopPane.add(new MainEmployees());
         }
     }
 
