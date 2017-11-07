@@ -14,6 +14,7 @@ public class UpMenu extends JMenuBar {
         this.desktopPane = desktopPane;
         add(createFileMenu());
         add(createTablesMenu());
+        add(createSettingsMenu());
     }
 
     private JMenu createFileMenu(){
@@ -38,6 +39,15 @@ public class UpMenu extends JMenuBar {
         emploees.addActionListener(new OpenEmploee());
 
         return tablesMenu;
+    }
+
+    private JMenu createSettingsMenu(){
+        JMenu settingsMenu = new JMenu("Настройки");
+        JMenuItem dataBase = new JMenuItem("База данных");
+        settingsMenu.add(dataBase);
+        settingsMenu.addSeparator();
+
+        return settingsMenu;
     }
 
     class ExitAction extends AbstractAction{
