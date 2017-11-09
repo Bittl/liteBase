@@ -5,16 +5,20 @@ import emploees.MainEmployees;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UpMenu extends JMenuBar {
 
     JDesktopPane desktopPane;
+    JDialog dialog;
 
-    public UpMenu(JDesktopPane desktopPane){
+    public UpMenu(JDesktopPane desktopPane, JDialog dialog){
         this.desktopPane = desktopPane;
+        this.dialog = dialog;
         add(createFileMenu());
         add(createTablesMenu());
         add(createSettingsMenu());
+        add(createHelpMenu());
     }
 
     private JMenu createFileMenu(){
@@ -50,6 +54,21 @@ public class UpMenu extends JMenuBar {
         return settingsMenu;
     }
 
+    private JMenu createHelpMenu(){
+        JMenu helpMenu = new JMenu("Помощь");
+        JMenuItem aboutProgram = new JMenuItem("О программе");
+        helpMenu.add(aboutProgram);
+        helpMenu.addSeparator();
+        helpMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(true);
+            }
+        });
+
+        return helpMenu;
+    }
+
     class ExitAction extends AbstractAction{
 
         ExitAction(){
@@ -68,5 +87,19 @@ public class UpMenu extends JMenuBar {
             desktopPane.add(new MainEmployees());
         }
     }
+
+//    class OpenAbout extends AbstractAction{
+//
+//        JDialog dialog;
+//
+//        public OpenAbout(JDialog dialog){
+//            this.dialog = dialog;
+//        }
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//           dialog.setVisible(true);
+//        }
+//    }
 
 }
