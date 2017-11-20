@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 public class UpMenu extends JMenuBar {
 
     JDesktopPane desktopPane;
-    JDialog dialog;
+    JDialog dialog = null;
+    JFrame frame = null;
 
-    public UpMenu(JDesktopPane desktopPane, JDialog dialog){
+    public UpMenu(JDesktopPane desktopPane, JFrame frame){
         this.desktopPane = desktopPane;
-        this.dialog = dialog;
+        this.frame = frame;
         add(createFileMenu());
         add(createTablesMenu());
         add(createSettingsMenu());
@@ -59,9 +60,12 @@ public class UpMenu extends JMenuBar {
         JMenuItem aboutProgram = new JMenuItem("О программе");
         helpMenu.add(aboutProgram);
         helpMenu.addSeparator();
-        helpMenu.addActionListener(new ActionListener() {
+        aboutProgram.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (dialog == null){
+                    dialog = new AboutProgram(frame);
+                }
                 dialog.setVisible(true);
             }
         });
