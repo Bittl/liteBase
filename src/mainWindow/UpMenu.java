@@ -1,6 +1,7 @@
 package mainWindow;
 
 
+import createDB.SelestDB;
 import emploees.MainEmployees;
 
 import javax.swing.*;
@@ -10,8 +11,10 @@ import java.awt.event.ActionListener;
 public class UpMenu extends JMenuBar {
 
     JDesktopPane desktopPane;
-    JDialog dialog = null;
+    JDialog about = null;
+    JDialog database = null;
     JFrame frame = null;
+
 
     public UpMenu(JDesktopPane desktopPane, JFrame frame){
         this.desktopPane = desktopPane;
@@ -51,6 +54,15 @@ public class UpMenu extends JMenuBar {
         JMenuItem dataBase = new JMenuItem("База данных");
         settingsMenu.add(dataBase);
         settingsMenu.addSeparator();
+        dataBase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (database == null){
+                    database = new SelestDB(frame);
+                }
+                database.setVisible(true);
+            }
+        });
 
         return settingsMenu;
     }
@@ -63,10 +75,10 @@ public class UpMenu extends JMenuBar {
         aboutProgram.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (dialog == null){
-                    dialog = new AboutProgram(frame);
+                if (about == null){
+                    about = new AboutProgram(frame);
                 }
-                dialog.setVisible(true);
+                about.setVisible(true);
             }
         });
 
