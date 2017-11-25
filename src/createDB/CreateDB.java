@@ -1,6 +1,22 @@
 package createDB;
 
+import dbConnect.DBConnect;
+
+import java.sql.SQLException;
+
 public class CreateDB {
+
+    public CreateDB(String name){
+        name = name + ".base";
+        try {
+
+            DBConnect.connect(name);
+        } catch (SQLException e) {
+            DBConnect.create(name);
+        }
+
+
+    }
 
     /**
      * Создаём базу, на вход полный путь к базе.
@@ -8,7 +24,13 @@ public class CreateDB {
      */
 
     public static void createDatabase(String db){
+        db = db + ".base";
+        try {
 
+            DBConnect.connect(db);
+        } catch (SQLException e) {
+            DBConnect.create(db);
+        }
     }
 
     /**

@@ -24,6 +24,18 @@ public class SelestDB extends JDialog {
         createPanel.add(createButton);
         add(createPanel);
 //        add(new JSeparator());
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String dbName = createField.getText();
+                if (dbName == null){
+                    System.out.println("Напишите название БД");
+                }
+                else {
+                    CreateDB.createDatabase(dbName);
+                }
+            }
+        });
 
         JPanel openPanel = new JPanel();
         openPanel.setLayout(new BoxLayout(openPanel, BoxLayout.Y_AXIS));
